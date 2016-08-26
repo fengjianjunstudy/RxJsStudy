@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/rxjs/rx.all.min.js"></script>
+</head>
+<body>
+    <div id="clock"></div>
+    <script type="text/javascript">
+        var data = [
+            {id:111,name:"Elton John"},
+            {id:222,name:"Mary"},
+            {id:333,name:"Linda"},
+            {id:111,name:"Mr. John"},
+            {id:666,name:"linda"}
+        ];
+        var source = Rx.Observable.from(data);
+        var ksf = function(d1,d2){ return d1.name.toLocaleLowerCase() === d2.name.toLocaleLowerCase() }; //使用id作为元素的键
+        var target = source.distinct(null,ksf).subscribe(function(d) {
+            console.log(d);
+        });
+    </script>
+</body>
+</html>

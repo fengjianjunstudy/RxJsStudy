@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/rxjs/rx.all.min.js"></script>
+</head>
+<body>
+    <div id="clock"></div>
+    <script type="text/javascript">
+        var source = Rx.Observable.interval(2000)
+                .map(function (x) {
+                    var chars = [0,1,2,3].map(function(d,i){ return String.fromCharCode(65 + (x+d) % 26)})
+                    return Rx.Observable.from(chars);
+                })
+        var target = source.switch();
+//        source.subscribe(
+//                function (x) {
+//                    var emits = [];
+//                    x.subscribe(
+//                            function(d){ emits.push(d);}
+//                    );
+//                    console.log('emit',emits);
+//                }
+//        );
+        target.subscribe(
+                function(x){ console.log(x)}
+        );
+    </script>
+</body>
+</html>

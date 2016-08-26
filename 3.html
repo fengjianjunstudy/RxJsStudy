@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/rxjs/rx.all.min.js"></script>
+</head>
+<body>
+    <div id="clock"></div>
+    <script type="text/javascript">
+        function generatorFn(observer) {
+            var i = 10;
+            var timer;
+            timer = setInterval(function() {
+                observer.onNext(i++);
+                if(i>100) {
+                    observer.onCompleted();
+                    clearInterval(timer);
+                }
+            },1000)
+        }
+        var observable = Rx.Observable.create(generatorFn);
+        observable.subscribe(function(d) {
+            console.log(d);
+        },
+        function(err) {
+            throw err;
+        },
+        function() {
+            console.log('结束');
+        });
+
+    </script>
+</body>
+</html>

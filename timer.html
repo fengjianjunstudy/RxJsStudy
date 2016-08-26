@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/rxjs/rx.all.min.js"></script>
+</head>
+<body>
+    <div id="clock"></div>
+    <script type="text/javascript">
+        var i = 0;
+        Rx.Observable.timer(2000,500).subscribe(function(d){console.log(d)});
+    </script>
+</body>
+</html>

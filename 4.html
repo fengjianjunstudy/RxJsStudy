@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/rxjs/rx.all.min.js"></script>
+</head>
+<body>
+    <div id="clock"></div>
+    <script type="text/javascript">
+        var source1 = Rx.Observable.create(function (observer) {
+            observer.onNext("1#");
+            observer.onNext("2#");
+            setTimeout(function(){
+                observer.onNext("3#");
+                observer.onCompleted();
+            },0);
+            //可选，返回清理函数
+            return function () { console.log('disposed'); };
+        });
+        var source2 = Rx.Observable.create(function(observer){
+            for(var i=65;i<91;i++){
+                observer.onNext(String.fromCharCode(i));
+            };
+            observer.onError(new Error("a fake error"));
+        });
+        [source1,source2].forEach(function(s,i) {
+            s.subscribe(function(d) {
+                console.log(d,i);
+            },function(err){
+                console.log(err,i)
+            },function() {
+                console.log('结束',i);
+            })
+        })
+    </script>
+</body>
+</html>

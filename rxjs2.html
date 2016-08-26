@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/rxjs/rx.all.min.js"></script>
+</head>
+<body>
+    <div id="clock"></div>
+    <script type="text/javascript">
+        var observable = Rx.Observable.create(function(observer) {
+            setInterval(function(){
+                observer.onNext(new Date())
+            },1000)
+        });
+        var observer = Rx.Observer.create(function next(data) {
+            document.getElementById('clock').innerHTML = data;
+        });
+        observable.subscribe(observer);
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/rxjs/rx.all.min.js"></script>
+</head>
+<body>
+    <div id="click">click</div>
+    <script type="text/javascript">
+        var source =Rx.Observable.timer(500,1000);//序列： 0 1 2 ...
+        //var t =new Date(Date.now);//1小时之后
+        var target = source.delay(2000).subscribe(function(d) {
+            console.log(d);
+        });//序列延迟1小时：0 1 2 ...
+        var source =Rx.Observable.timer(0,1000);//序列： 0 1 2 ...
+        var target = source.delaySubscription(1000).subscribe(function(d) {
+            console.log('b',d);
+        });//序列延迟1秒：0 1 2 ...
+    </script>
+</body>
+</html>

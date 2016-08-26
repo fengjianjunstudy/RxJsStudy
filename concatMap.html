@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/rxjs/rx.all.min.js"></script>
+</head>
+<body>
+    <div id="clock"></div>
+    <script type="text/javascript">
+        var source = Rx.Observable.timer(0,2000).take(5);
+        var target = source.concatMap(function(x){
+            return Rx.Observable.interval(1000)
+                    .map(function(d,i){ return x + '-' + d;})
+                    .take(4);
+        });
+        [source,target].forEach(function(s,i){
+            s.subscribe(
+                    function (x) { console.log(x) },
+                    function (err) { console.log(err)},
+                    function () { console.log('done')}
+            );
+        });
+    </script>
+</body>
+</html>

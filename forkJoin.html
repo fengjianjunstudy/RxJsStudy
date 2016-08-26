@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/rxjs/rx.all.min.js"></script>
+</head>
+<body>
+    <div id="clock"></div>
+    <script type="text/javascript">
+        var source = Rx.Observable.create(function(observe) {
+            observe.onNext('A');
+            setTimeout(function(){
+                observe.onNext('B');
+                setTimeout(function(){
+                    observe.onError('err');
+                },1500)
+            },1000)
+        })
+        source.catch(function(d) {
+            return Rx.Observable.from([1,2,3]);
+        }).subscribe(function(d) {
+            console.log(d);
+        });
+
+    </script>
+</body>
+</html>

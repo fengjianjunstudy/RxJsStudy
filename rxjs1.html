@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="clock"></div>
+    <script type="text/javascript">
+        function Observer(cusumer) {
+            this._cusumer = cusumer;
+        }
+        Observer.prototype.onNotify = function(data) {
+            this._cusumer.call(this,data);
+        }
+        function Observable(generator) {
+            this._generator =generator;
+        }
+        Observable.prototype.subscribe = function(observer) {
+            this._generator.call(this,observer);
+        }
+        function generatorFn(observer) {
+            setInterval(function() {
+                observer.onNotify(new Date())
+            },1000)
+        }
+        function cusumerFn(data) {
+            document.getElementById('clock').innerHTML = data;
+        }
+        var observable = new Observable(generatorFn);
+        var observer = new Observer(cusumerFn);
+        observable.subscribe(observer);
+    </script>
+</body>
+</html>

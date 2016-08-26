@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/rxjs/rx.all.min.js"></script>
+</head>
+<body>
+    <div id="clock"></div>
+    <script type="text/javascript">
+        var source = Rx.Observable.timer(0,3000);
+        var target = source.flatMapLatest(function (x) {
+            return Rx.Observable.interval(1000).take(5).map(function(d){ return x + '-' + d});
+        });
+        [source,target].forEach(function(s,i){
+            s.subscribe(
+                    function (x) { console.log(s,i)},
+                    function (err) { console.log(err) },
+                    function () { console.log('done')}
+            );
+        });
+    </script>
+</body>
+</html>

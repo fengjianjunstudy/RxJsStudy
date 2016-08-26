@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/rxjs/rx.all.min.js"></script>
+</head>
+<body>
+    <div id="clock"></div>
+    <script type="text/javascript">
+        Rx.Observable.pairs({
+            math: 80,
+            art: 90,
+            music: 88
+        }).subscribe(function(d){
+            console.log('json',d);
+        })
+    </script>
+</body>
+</html>

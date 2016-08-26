@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/rxjs/rx.all.min.js"></script>
+</head>
+<body>
+    <div id="click">click</div>
+    <script type="text/javascript">
+        var loop = 2;
+        Rx.Observable.of(1,2,3).doWhile(function() {
+            return false;
+        }).subscribe(function(b) {
+            console.log(loop,b)
+        })
+    </script>
+</body>
+</html>

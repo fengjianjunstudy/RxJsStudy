@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/rxjs/rx.all.min.js"></script>
+</head>
+<body>
+    <div id="clock"></div>
+    <script type="text/javascript">
+        Rx.Observable.from([{name:'xiaoming',id:123},{name:'xiaohua',id:111}]).pluck('id').map(function(d) {
+            return d+100;
+        }).subscribe(function(d){
+            console.log('pluck',d);
+        })
+    </script>
+</body>
+</html>

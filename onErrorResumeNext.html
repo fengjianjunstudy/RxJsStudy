@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/rxjs/rx.all.min.js"></script>
+</head>
+<body>
+    <div id="clock"></div>
+    <script type="text/javascript">
+        var source = Rx.Observable.from([1.2,3]).onErrorResumeNext(Rx.Observable.of('A','B','C')).subscribe(function(d) {
+            console.log(d);
+        })
+
+    </script>
+</body>
+</html>

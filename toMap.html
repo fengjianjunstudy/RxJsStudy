@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/rxjs/rx.all.min.js"></script>
+</head>
+<body>
+    <div id="click">click</div>
+    <script type="text/javascript">
+        var data =[
+            {id:123,name:"John"},
+            {id:456,name:"Kate"}
+        ];
+        var source =Rx.Observable.from(data);//序列： {...} {...}
+        var ksf =function(d){
+            return d.id;//使用id作为键
+        }
+        var vsf =function(d){
+            return d.name;//使用name作为值
+        };
+        var target = source.toMap(ksf,vsf);//序列：Map{123=>{...},456=>{...}}
+        target.subscribe(function(d){
+            console.log(d);
+        })
+    </script>
+</body>
+</html>

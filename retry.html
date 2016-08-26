@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="node_modules/rxjs/rx.all.min.js"></script>
+</head>
+<body>
+    <div id="clock"></div>
+    <script type="text/javascript">
+        var source =Rx.Observable.create(function(o){
+            o.onNext(1);
+            o.onNext(2);
+            o.onError(newError("permanent bug"));
+        });//序列：1 2 <ERROR>
+        var target = source.retry().subscribe(function(d) {
+            console.log(d);
+        });//序列：1 2 1 2 <ERROR>
+    </script>
+</body>
+</html>

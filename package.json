@@ -1,0 +1,18 @@
+{
+  "name": "myrxjs",
+  "version": "1.0.0",
+  "description": "Rxjs study",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rxjs",
+    "javascript"
+  ],
+  "author": "fjj",
+  "license": "ISC",
+  "dependencies": {
+    "rxjs": "^5.0.0-beta.11"
+  }
+}
